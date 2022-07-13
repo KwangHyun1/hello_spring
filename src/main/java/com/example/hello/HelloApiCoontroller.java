@@ -58,4 +58,11 @@ public class HelloApiCoontroller {
         return new ResponseEntity<List<MenuVo>>(list, HttpStatus.OK);
     }
 
+    // 네이버 검색 조회회
+   @GetMapping("/api/v1/blogmenu")
+    public ResponseEntity<String> getBestMenu(@RequestParam String keyword) {
+        String json = menuService.blogSearch(keyword);
+        return new ResponseEntity<String>(json, HttpStatus.OK);
+    }
+
 }
