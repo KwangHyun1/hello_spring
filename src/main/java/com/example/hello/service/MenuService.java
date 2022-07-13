@@ -26,4 +26,9 @@ public class MenuService {
      //   return menu;
     }
 
+    // 랜덤 데이터 값 하나 추출
+    public List<MenuVo> findRandMenu(){
+        return menuRepository.findRandMenu();
+    }
+
 }
