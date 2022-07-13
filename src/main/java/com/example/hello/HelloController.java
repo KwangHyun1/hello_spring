@@ -39,6 +39,10 @@ public class HelloController {
 
         return "see";
     }
+    @GetMapping("/best")
+    public String bset() {
+        return "best";
+    }
 
 
 
