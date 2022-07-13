@@ -15,7 +15,7 @@ public class NaverApi {
 
     public static String blogSearch(String keyword) {
         String clientId = HelloConfig.CLIENT_ID; //애플리케이션 클라이언트 아이디값"
-        String clientSecret = HelloConfig.CLIENT_ID; //애플리케이션 클라이언트 시크릿값"
+        String clientSecret = HelloConfig.CLIENT_SECRET; //애플리케이션 클라이언트 시크릿값"
 
 
         String text = null;
