@@ -6,9 +6,11 @@ $(document).ready(function(){
                 //console.log(field.menu);
                // console.log(field['price']);
                 //console.log(field.img);
-                html += "<h5>" + field.menu + "</h5>"
-                html += "<h4>" + field.price + "</h4>"
-                html += "<img src='" + field.img + "'>"
+
+
+                html += "<td>" + field.menu + "</td>"
+                html += "<td>" + field.price + "</td>"
+                html += "<td><img src='" + field.img + "'></td>"
             });
             $("#bestmenu").html(html);
         });
