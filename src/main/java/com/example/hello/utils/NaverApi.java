@@ -1,4 +1,4 @@
-package com.example.hello.utls;
+package com.example.hello.utils;
 
 // 네이버 검색 API 예제 - blog 검색
 import java.io.*;

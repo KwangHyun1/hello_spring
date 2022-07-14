@@ -1,7 +1,8 @@
 package com.example.hello.service;
 
+import com.example.hello.Crawling;
 import com.example.hello.repo.MenuRepository;
-import com.example.hello.utls.NaverApi;
+import com.example.hello.utils.NaverApi;
 import com.example.hello.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 public class MenuService {
     @Autowired
     private MenuRepository menuRepository;
+    private  Crawling crawling;
 
     //전체 데이터 조회
     public List<MenuVo> findAll() {
@@ -36,4 +38,5 @@ public class MenuService {
     public  String blogSearch(String keyword){
         return  NaverApi.blogSearch(keyword);
     }
+
 }
