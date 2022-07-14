@@ -1,9 +1,10 @@
 package com.example.hello;
 
-import com.example.hello.dto.TbMenu;
-import com.example.hello.repo.MenuRepository;
+import com.example.hello.dto.MusicDto;
 import com.example.hello.service.MenuService;
+import com.example.hello.service.MusicService;
 import com.example.hello.vo.MenuVo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +12,19 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController
 public class HelloApiCoontroller {
 
     @Autowired
     private MenuService menuService;
+    private MusicService musicService;
+
+    public HelloApiCoontroller(MusicService musicService) {
+        this.musicService = musicService;
+    }
+
     @RequestMapping("/hello")
     String home() {
         return "Hello World!";
@@ -63,6 +70,11 @@ public class HelloApiCoontroller {
     public ResponseEntity<String> getBestMenu(@RequestParam String keyword) {
         String json = menuService.blogSearch(keyword);
         return new ResponseEntity<String>(json, HttpStatus.OK);
+    }
+    @GetMapping("/api/v1/melon")
+    public ResponseEntity<List<MusicDto>> getMelonList() {
+        List<MusicDto> list = musicService.getMelonMusicList();
+        return new ResponseEntity<List<MusicDto>>(list, HttpStatus.OK);
     }
 
 }

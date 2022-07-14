@@ -1,6 +1,5 @@
 package com.example.hello;
 
-import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -64,7 +63,7 @@ public class Crawling {
     }
 
     // 멜론 크롤링
-    public static void getMelonMusicList() {
+    public static String getMelonMusicList() {
 
         final String MusicList = "https://www.melon.com/chart/index.htm";
         Connection conn = Jsoup.connect(MusicList);
@@ -80,6 +79,7 @@ public class Crawling {
         } catch (IOException ignored) {
             System.out.println("오류");
         }
+        return MusicList;
     }
     public static String getMusicList(Document document) {
         Elements stockTableBody = document.select("div.wrap_song_info");
@@ -91,11 +91,49 @@ public class Crawling {
 
                 text = td.select(".rank01 a").text(); // 노래 제목
                 if (!text.isEmpty())
-                    sb.append("제목" + text);
+                    sb.append("제목 " + text);
                 sb.append("   ");
                 text = td.select("span.checkEllipsis a").text(); // 가수
                 if(!text.isEmpty())
-                    sb.append("가수" + text);
+                    sb.append("가수 " + text);
+            }
+            sb.append(System.getProperty("line.separator")); //줄바꿈
+        }
+        return sb.toString();
+    }
+
+    // 업비트 크롤링
+    public static void getUpbitCoinList() {
+
+        final String CoinList = "https://upbit.com/exchange?code=CRIX.UPBIT.KRW-BTC";
+        Connection conn = Jsoup.connect(CoinList);
+
+        try {
+            System.out.println("코인 실행");
+            Document document = conn.get();
+            //String thead = getStockHeader(document); // 칼럼명
+            String tbody = getCoinList(document);   // 데이터 리스트
+            //System.out.println(thead);
+            System.out.println(tbody);
+
+        } catch (IOException ignored) {
+            System.out.println("오류");
+        }
+    }
+    public static String getCoinList(Document document) {
+        Elements stockTableBody = document.select("table.highlight.borderNone tbody");
+        StringBuilder sb = new StringBuilder();
+        for (Element element : stockTableBody) {
+            for (Element td : element.select("tr.down.on")) {
+                String text;
+
+                text = td.select("td.tit a strong").text(); // 노래 제목
+                if (!text.isEmpty())
+                    sb.append("제목 " + text);
+                sb.append("   ");
+                text = td.select("td.price strong").text(); // 가수
+                if(!text.isEmpty())
+                    sb.append("가수 " + text);
             }
             sb.append(System.getProperty("line.separator")); //줄바꿈
         }
@@ -104,7 +142,7 @@ public class Crawling {
 
     public static void main(String[] args) {
        // getStockPriceList();
-         getMelonMusicList();
-
+        getMelonMusicList();
+       // getUpbitCoinList();
     }
 }
