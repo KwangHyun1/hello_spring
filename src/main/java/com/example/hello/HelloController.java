@@ -49,6 +49,11 @@ public class HelloController {
         return "blog";
     }
 
+    @GetMapping("/update")
+    public String update() {
+        return "update";
+    }
+
 
 
 }
