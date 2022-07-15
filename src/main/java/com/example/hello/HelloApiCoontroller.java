@@ -1,7 +1,9 @@
 package com.example.hello;
 
+import com.example.hello.dto.MovieDto;
 import com.example.hello.dto.MusicDto;
 import com.example.hello.service.MenuService;
+import com.example.hello.service.MovieService;
 import com.example.hello.service.MusicService;
 import com.example.hello.vo.MenuVo;
 
@@ -20,9 +22,11 @@ public class HelloApiCoontroller {
     @Autowired
     private MenuService menuService;
     private MusicService musicService;
+    private MovieService movieService;
 
-    public HelloApiCoontroller(MusicService musicService) {
+    public HelloApiCoontroller(MusicService musicService, MovieService movieService) {
         this.musicService = musicService;
+        this.movieService = movieService;
     }
 
     @RequestMapping("/hello")
@@ -67,7 +71,7 @@ public class HelloApiCoontroller {
 
     // 네이버 검색 조회회
    @GetMapping("/api/v1/blogmenu")
-    public ResponseEntity<String> getBestMenu(@RequestParam String keyword) {
+    public ResponseEntity<String> getBlogMenu(@RequestParam String keyword) {
         String json = menuService.blogSearch(keyword);
         return new ResponseEntity<String>(json, HttpStatus.OK);
     }
@@ -75,6 +79,11 @@ public class HelloApiCoontroller {
     public ResponseEntity<List<MusicDto>> getMelonList() {
         List<MusicDto> list = musicService.getMelonMusicList();
         return new ResponseEntity<List<MusicDto>>(list, HttpStatus.OK);
+    }
+    @GetMapping("/api/v1/movie")
+    public ResponseEntity<List<MovieDto>> getMoiveList() {
+        List<MovieDto> list = movieService.getNaverMovieList();
+        return new ResponseEntity<List<MovieDto>>(list, HttpStatus.OK);
     }
 
 }

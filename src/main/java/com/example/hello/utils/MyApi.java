@@ -1,5 +1,6 @@
 package com.example.hello.utils;
 
+import com.example.hello.dto.MovieDto;
 import com.example.hello.dto.MusicDto;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -42,5 +43,37 @@ public class MyApi {
         return list;
     }
 
+    public static List<MovieDto> getNaverMovieList() {
+
+        final String MovieList = "https://movie.naver.com/movie/running/current.naver?view=image&tab=normal&order=open";
+        Connection conn = Jsoup.connect(MovieList);
+        List<MovieDto> list = new ArrayList<>();
+
+        try {
+            System.out.println("영화 실행");
+            Document document = conn.get();
+            Elements stockTableBody = document.select("div.lst_wrap");
+            List<String> movieList = new ArrayList<>();
+            StringBuilder sb = new StringBuilder();
+            for (Element element : stockTableBody) {
+                for (Element td : element.select("ul.lst_default_t1 li")) {
+                    String text;
+                    stockTableBody = td.select("a > img"); // 영화 이미지
+                    for (int i = 0; i < stockTableBody.size(); i++) {
+                        MovieDto movieDto = new MovieDto();
+                        String img = (stockTableBody.get(i).attr("src"));
+                        movieDto.setImg(img);
+                        //if (!text.isEmpty())
+                        // sb.append("제목 " + text);
+                        String tit = td.select("strong.tit").text(); // 영화 제목
+                        movieDto.setTit(tit);
+                        list.add(movieDto);
+                    }
+                }
+            }
+        } catch (IOException ignored) {
+            System.out.println("오류");
+        }return list;
+    }
 
 }

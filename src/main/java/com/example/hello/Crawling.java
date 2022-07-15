@@ -49,10 +49,10 @@ public class Crawling {
 
             for (Element td : element.select("td")) {
                 String text;
-                if(td.select(".center a").attr("href").isEmpty()){
+                if (td.select(".center a").attr("href").isEmpty()) {
                     text = td.text();
-                }else{
-                    text = "https://finance.naver.com"+td.select(".center a").attr("href");
+                } else {
+                    text = "https://finance.naver.com" + td.select(".center a").attr("href");
                 }
                 sb.append(text);
                 sb.append("   ");
@@ -81,6 +81,7 @@ public class Crawling {
         }
         return MusicList;
     }
+
     public static String getMusicList(Document document) {
         Elements stockTableBody = document.select("div.wrap_song_info");
         StringBuilder sb = new StringBuilder();
@@ -94,7 +95,7 @@ public class Crawling {
                     sb.append("제목 " + text);
                 sb.append("   ");
                 text = td.select("span.checkEllipsis a").text(); // 가수
-                if(!text.isEmpty())
+                if (!text.isEmpty())
                     sb.append("가수 " + text);
             }
             sb.append(System.getProperty("line.separator")); //줄바꿈
@@ -102,17 +103,17 @@ public class Crawling {
         return sb.toString();
     }
 
-    // 업비트 크롤링
-    public static void getUpbitCoinList() {
+    // 네이버 영화 크롤링
+    public static void getNaverMovieList() {
 
-        final String CoinList = "https://upbit.com/exchange?code=CRIX.UPBIT.KRW-BTC";
-        Connection conn = Jsoup.connect(CoinList);
+        final String MovieList = "https://movie.naver.com/movie/running/current.naver?view=image&tab=normal&order=open";
+        Connection conn = Jsoup.connect(MovieList);
 
         try {
-            System.out.println("코인 실행");
+            System.out.println("영화 실행");
             Document document = conn.get();
             //String thead = getStockHeader(document); // 칼럼명
-            String tbody = getCoinList(document);   // 데이터 리스트
+            String tbody = getMovieList(document);   // 데이터 리스트
             //System.out.println(thead);
             System.out.println(tbody);
 
@@ -120,29 +121,33 @@ public class Crawling {
             System.out.println("오류");
         }
     }
-    public static String getCoinList(Document document) {
-        Elements stockTableBody = document.select("table.highlight.borderNone tbody");
+
+    public static String getMovieList(Document document) {
+        Elements stockTableBody = document.select("div.lst_wrap");
         StringBuilder sb = new StringBuilder();
         for (Element element : stockTableBody) {
-            for (Element td : element.select("tr.down.on")) {
+            for (Element td : element.select("ul.lst_default_t1 li")) {
                 String text;
 
-                text = td.select("td.tit a strong").text(); // 노래 제목
-                if (!text.isEmpty())
-                    sb.append("제목 " + text);
-                sb.append("   ");
-                text = td.select("td.price strong").text(); // 가수
-                if(!text.isEmpty())
-                    sb.append("가수 " + text);
+                stockTableBody = td.select("a > img"); // 노래 제목
+                for (int i = 0; i < stockTableBody.size(); i++) {
+                    sb.append(stockTableBody.get(i).attr("src"));
+                    //if (!text.isEmpty())
+                    // sb.append("제목 " + text);
+                    text = td.select("strong.tit").text(); // 가수
+                    if (!text.isEmpty())
+                        sb.append("영화 제목 " + text);
+                    sb.append(System.getProperty("line.separator")); //줄바꿈
+                }
             }
-            sb.append(System.getProperty("line.separator")); //줄바꿈
+
         }
         return sb.toString();
     }
 
     public static void main(String[] args) {
-       // getStockPriceList();
-        getMelonMusicList();
-       // getUpbitCoinList();
+        // getStockPriceList();
+        //getMelonMusicList();
+        getNaverMovieList();
     }
 }

@@ -54,6 +54,16 @@ public class HelloController {
         return "update";
     }
 
+    @GetMapping("/movie")
+    public String movie() {
+        return "movie";
+    }
+
+    @GetMapping("/musiclist")
+    public String music() {
+        return "musicList";
+    }
+
 
 
 }
