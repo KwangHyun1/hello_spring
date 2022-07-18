@@ -4,7 +4,7 @@
 IntelliJ - Spring Boot
 # Envirements
 
-# Authentication 시크릿 키
+```# Authentication 시크릿 키
 SECRET_KEY=top-secret
 # config 주입 정보
 # development or production
@@ -17,5 +17,4 @@ SSQL_ORIGIN_MYSQL_PASSWORD=password
 SSQL_ORIGIN_MYSQL_HOST=localhost
 SSQL_ORIGIN_MYSQL_PORT=3306
 
-# mysql docker 정보
-MYSQL_ROOT_PASSWORD=password
+# mysql docker 정 ```
