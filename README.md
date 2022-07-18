@@ -22,5 +22,3 @@ MYSQL_ORIGIN_MYSQL_PORT=3306
 * Api를 활용한 Crawling - melon/naverMovie
 * AWS - ubuntu 를 이용해 서버열기  -  http://43.200.85.74:8080/
 
-# 주 사용 언어
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username= KwangHyun1)](https://github.com/KwangHyun1/github-readme-stats)
