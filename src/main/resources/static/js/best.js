@@ -10,7 +10,7 @@ $(document).ready(function(){
 
                 html += "<td>" + field.menu + "</td>"
                 html += "<td>" + field.price + "</td>"
-                html += "<td><img src='" + field.img + "'></td>"
+                html += "<td><img src='" + field.img + "'width=300px></td>"
             });
             $("#bestmenu").html(html);
         });

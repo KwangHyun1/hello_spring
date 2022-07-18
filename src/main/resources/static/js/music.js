@@ -6,6 +6,6 @@ $(document).ready(function(){
                 html += "<td>" + field.song + "</td>"
                 html += "<td>" + field.gasu + "</td></tr>"
             });
-            $("#music").html(html); // musixList.html의 아이디값
+            $("#music").html(html); // musixList.html의 id값
         });
 });
