@@ -1,0 +1,49 @@
+html,
+body {
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 150%;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color : white;
+    text-decoration: none;
+}
+
+#main {
+    background-color: black;
+    color: #fff;
+    font-size: 80px;
+    height: 40%;
+    text-align: center;
+    padding: 5%;
+}
+#div1 {
+    background: linear-gradient(black, white);
+    color: #fff;
+    font-size: 80px;
+    height: 30%;
+    text-align: center;
+    padding: 5%;
+}
+#div2{
+    background-color: white;
+    height: 80%;
+}
+
+.blink {
+    animation: 1s blink linear infinite
+}
+@keyframes
+blink {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}
