@@ -1,0 +1,52 @@
+.navbar-nav{
+    display: flex;
+    margin-left: 450px;
+}
+div.s_left{
+    height: 700px;
+    width: 30%;
+    float: left;
+}
+div.centers{
+    height: 700px;
+    width: 40%;
+    float: left;
+}
+div.s_right {
+    height: 700px;
+    width: 30%;
+    float: left;
+}
+
+
+#scroll_move,#gicon{
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    color: inherit; /* 링크의 색상 제거 */
+}
+--  깃허브 아이콘
+.icons{
+}
+.fa-brands.fa-github{
+    color: white;
+    display: flex;
+    margin-left: 800px;
+}
+
+-- 바디부분
+
+--글씨 깜박이는 효과
+.blink {
+    animation: 1s blink linear infinite
+}
+@keyframes
+blink {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}

@@ -2,6 +2,7 @@ package com.example.hello;
 
 import com.example.hello.dto.MovieDto;
 import com.example.hello.dto.MusicDto;
+import com.example.hello.dto.TbMenu;
 import com.example.hello.service.MenuService;
 import com.example.hello.service.MovieService;
 import com.example.hello.service.MusicService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,10 +45,15 @@ public class HelloApiCoontroller {
     //public ResponseEntity<MenuVo> save(MenuVo menu) {
     //    return new ResponseEntity<MenuVo>(menuService.save(menu), HttpStatus.OK);
     //}
+
+    // 메뉴 넣기
     @PostMapping("/api/v1/insert")
     public Long save(@RequestBody MenuVo menu){
         return menuService.save(menu);
     }
+
+    //메뉴 수정
+
     @Transactional(readOnly = true)
     @GetMapping("/api/v1/menulist")
     public ResponseEntity<List<MenuVo>> getAllMenu () {
@@ -75,15 +82,19 @@ public class HelloApiCoontroller {
         String json = menuService.blogSearch(keyword);
         return new ResponseEntity<String>(json, HttpStatus.OK);
     }
+    // api 멜론 차트 크롤링
     @GetMapping("/api/v1/melon")
     public ResponseEntity<List<MusicDto>> getMelonList() {
         List<MusicDto> list = musicService.getMelonMusicList();
         return new ResponseEntity<List<MusicDto>>(list, HttpStatus.OK);
     }
+    // api 네이버 상영중인 영화 크롤링
     @GetMapping("/api/v1/movie")
     public ResponseEntity<List<MovieDto>> getMoiveList() {
         List<MovieDto> list = movieService.getNaverMovieList();
         return new ResponseEntity<List<MovieDto>>(list, HttpStatus.OK);
     }
+
+
 
 }

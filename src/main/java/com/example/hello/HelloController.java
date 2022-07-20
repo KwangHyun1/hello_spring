@@ -40,7 +40,7 @@ public class HelloController {
         return "see";
     }
     @GetMapping("/best")
-    public String bset() {
+    public String best() {
         return "best";
     }
 
@@ -64,8 +64,15 @@ public class HelloController {
         return "musicList";
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
 
-
+    @GetMapping("/test2")
+    public String test2() {
+        return "test2";
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package com.example.hello.service;
 
 import com.example.hello.Crawling;
+import com.example.hello.dto.TbMenu;
 import com.example.hello.repo.MenuRepository;
 import com.example.hello.utils.NaverApi;
 import com.example.hello.vo.MenuVo;
@@ -39,4 +40,6 @@ public class MenuService {
         return  NaverApi.blogSearch(keyword);
     }
 
+    // 수정
+    
 }
